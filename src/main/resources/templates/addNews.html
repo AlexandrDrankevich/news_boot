@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+>
+
+<body id="addNews">
+<div class="body-title">
+    <a th:href="@{/newsList}" th:text="#{local.loclink.name.news}"></a>
+    >> <span th:text="#{local.loclink.name.add_news}" th:unless="${editView eq 'active'}"></span>
+    <span th:if="${editView eq 'active'}" th:text="#{local.loclink.name.edit_news}"></span>
+</div>
+<br/>
+<div align="center">
+    <form method="POST" th:action="@{/news/saveNews}" th:object="${news}">
+        <input th:field="*{idNews}" type="hidden"/>
+         <table>
+      <tr>
+        <td  th:text="#{local.loclabel.name.title}"></td>
+        <td><input id="title" maxlength="100" required="required" th:field="*{title}" type="text" class="form-addnews"/>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td  th:text="#{local.loclabel.name.date}"></td>
+        <td><input id="date" max="2030-01-01" min="2022-01-01" required="required"
+                   th:field="*{newsDate}"
+                   type="date" class="form-addnews"/>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td  th:text="#{local.loclabel.name.brief}"></td>
+        <td><textarea  id="brief" maxlength="500" required="required"
+                      th:field="*{briefNews}" class="form-addnews"></textarea>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td  th:text="#{local.loclabel.name.content}"></td>
+        <td><textarea id="content" maxlength="2048" required="required"
+                      th:field="*{content}" class="form-content"></textarea>
+      </tr>
+  </table>
+               <br/>
+        <div class="first-view-button">
+            <input th:value="#{local.locbutton.name.save}" type="submit" value=""/>
+        </div>
+    </form>
+
+    <div class="second-view-button">
+        <a th:href="@{/newsList}"><input th:value="#{local.locbutton.name.cancel}" type="submit" value=""/></a>
+    </div>
+</div>
+</body>
+</html>
+
+
